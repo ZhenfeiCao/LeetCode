@@ -1,58 +1,55 @@
-# 94题解
-考察点：二叉树的中序遍历
+# 226 题解
+考察点：递归遍历二叉树
 
-#### 方法一：递归
+#### 方法：递归
 
-首先我们需要了解什么是二叉树的中序遍历：按照访问左子树——根节点——右子树的方式遍历这棵树，而在访问左子树或者右子树的时候我们按照同样的方式遍历，直到遍历完整棵树。因此整个遍历过程天然具有递归的性质，我们可以直接用递归函数来模拟这一过程。
+每个子树的根节点都说：“先翻转我的左右孩子吧！”
 
-定义 inorder(root) 表示当前遍历到 root 节点的答案，那么按照定义，我们只要递归调用 inorder(root.left) 来遍历 root 节点的左子树，然后将 root 节点的值加入答案，再递归调用inorder(root.right) 来遍历 root 节点的右子树即可，递归终止的条件为碰到空节点。
+结果就是，位于树的底部的、左右孩子都是 null 的子树，先被翻转。
+
+向上返回的过程中，子树被一个个翻转……递归全部出栈时，整棵树就翻转好了。
+
+那，一个子树的翻转怎么实现呢？交换它的左右子节点（左右子树）。每个子树都这么做。
+
+于是，问题在递归出栈时，被解决。
 
 ```java
 class Solution {
-    class Solution {
-    public List<Integer> inorderTraversal(TreeNode root) {
-        List<Integer> res = new ArrayList<Integer>();
-        inorder(root, res);
-        return res;
-    }
-
-    public void inorder(TreeNode root, List<Integer> res) {
+    public TreeNode invertTree(TreeNode root) {
         if (root == null) {
-            return;
+            return null;
         }
-        inorder(root.left, res);
-        res.add(root.val);
-        inorder(root.right, res);
+        TreeNode left = invertTree(root.left);
+        TreeNode right = invertTree(root.right);
+        root.left = right;
+        root.right = left;
+        return root;
     }
-}
 }
 ```
 
-#### 方法二：栈（非递归）
+先交换左右子树，它们内部还没翻转好，没事，交给递归去翻转。
 
-非递归解法比较绕，就是从根节点开始，沿着他的左子节点一直走下去，一直到某一个节点没有左子节点，然后把这个节点加入到集合中，接着访问他的右子节点，这个时候这个右子节点我们可以把它按照访问根节点的方式进行访问
+即，把交换的操作，放在递归调用之前。
+
+问题在递归压栈时，被解决。
 
 ```java
 class Solution {
-    public List<Integer> inorderTraversal(TreeNode root) {
-        //list存储结果的
-        List<Integer> list = new ArrayList<>();
-        //栈存储结点的
-        Stack<TreeNode> stack = new Stack<>();
-        while (root != null || !stack.empty()) {
-            //找当前节点的左子节点，一直找下去，直到为空为止
-            while (root != null) {
-                stack.push(root);
-                root = root.left;
-            }
-            //出栈，这时候root就是最左子节点
-            root = stack.pop();
-            //然后把最左子节点加入到集合中
-            list.add(root.val);
-            //最后再访问他的右子节点
-            root = root.right;
+    public TreeNode invertTree(TreeNode root) {
+        tranvers(root);
+        return root;
+    }
+
+    public void tranvers(TreeNode root){
+        if(root == null){
+            return;
         }
-        return list;
+        TreeNode tmp = root.left;
+        root.left = root.right;
+        root.right = tmp;
+        tranvers(root.left);
+        tranvers(root.right);
     }
 }
 ```
