@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/1002/1002.iml" filepath="$PROJECT_DIR$/1002/1002.iml" />
+      <module fileurl="file://$PROJECT_DIR$/1024/1024.iml" filepath="$PROJECT_DIR$/1024/1024.iml" />
       <module fileurl="file://$PROJECT_DIR$/116/116.iml" filepath="$PROJECT_DIR$/116/116.iml" />
       <module fileurl="file://$PROJECT_DIR$/117/117.iml" filepath="$PROJECT_DIR$/117/117.iml" />
       <module fileurl="file://$PROJECT_DIR$/141/141.iml" filepath="$PROJECT_DIR$/141/141.iml" />
@@ -10,6 +11,7 @@
       <module fileurl="file://$PROJECT_DIR$/19/19.iml" filepath="$PROJECT_DIR$/19/19.iml" />
       <module fileurl="file://$PROJECT_DIR$/214/214.iml" filepath="$PROJECT_DIR$/214/214.iml" />
       <module fileurl="file://$PROJECT_DIR$/226/226.iml" filepath="$PROJECT_DIR$/226/226.iml" />
+      <module fileurl="file://$PROJECT_DIR$/234/234.iml" filepath="$PROJECT_DIR$/234/234.iml" />
       <module fileurl="file://$PROJECT_DIR$/235/235.iml" filepath="$PROJECT_DIR$/235/235.iml" />
       <module fileurl="file://$PROJECT_DIR$/24/24.iml" filepath="$PROJECT_DIR$/24/24.iml" />
       <module fileurl="file://$PROJECT_DIR$/37/37.iml" filepath="$PROJECT_DIR$/37/37.iml" />
